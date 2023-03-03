@@ -1,6 +1,6 @@
 # react-native-image-selector
 
-� Minimalist, customizable component UI that allow to select photos from the device's library.�
+Minimalist, customizable component UI that allow to select photos from the device's library.
 
 ## Installation
 
