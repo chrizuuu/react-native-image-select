@@ -1,22 +1,24 @@
-# react-native-image-selector
+# react-native-image-select
 
 Minimalist, customizable component UI that allow to select photos from the device's library.
 
 ## Installation
 
+with Yarn:
+
 ```sh
-npm install react-native-image-selector
+yarn add react-native-image-select
+```
+
+or NPM:
+
+```sh
+npm install react-native-image-select
 ```
 
 ## Usage
 
-```js
-import { multiply } from 'react-native-image-selector';
-
-// ...
-
-const result = await multiply(3, 7);
-```
+In progress...
 
 ## Contributing
 
