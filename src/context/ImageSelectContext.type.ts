@@ -1,17 +1,16 @@
 import React from 'react';
-import { CameraRollReturned } from '../hooks/useImageSelectorHandlers';
+import { CameraRollReturned } from '../hooks/useImageSelectHandlers';
 import { SelectedImage } from '../types';
 
-export interface ImageSelectorContextProps {
-  onDone: () => void;
+export interface ImageSelectContextProps {
   onCancel: () => void;
   isVisible: boolean;
   startIndex?: number;
   children: React.ReactNode;
-  callback: (selectedImages: (SelectedImage | undefined)[]) => void;
+  onDone: (selectedImages: (SelectedImage | undefined)[]) => void;
 }
 
-export interface ImageSelectorContextHandler {
+export interface ImageSelectContextHandler {
   handleRemoveSelectedImage: (id: string) => void;
   handleRecalculateIndexOfSelectedImages: () => void;
   handleCreateBackupSelectedImages: () => void;
@@ -19,21 +18,23 @@ export interface ImageSelectorContextHandler {
   handleClearSelectedImages: () => void;
 }
 
-export interface ImageSelectorImagesProvider {
+export interface ImageSelectImagesProvider {
   photos: CameraRollReturned['photos'];
   onEndReached: CameraRollReturned['onEndReached'];
 }
 
-export interface ImageSelectorImageItemProvider {
+export interface ImageSelectImageItemProvider {
   handleImagePress: (imageUri: string) => void;
 }
 
-export type ImageSelectorStateProvider = Pick<
+export type ImageSelectStateProvider = Pick<
   CameraRollReturned,
   'hasCameraRollGranted' | 'isInitializing' | 'isReloading'
 >;
 
-export type ImageSelectorPropertiesProvider = Pick<
-  ImageSelectorContextProps,
-  'isVisible' | 'onCancel' | 'onDone'
->;
+export type ImageSelectPropertiesProvider = Pick<
+  ImageSelectContextProps,
+  'isVisible' | 'onCancel'
+> & {
+  onDone: () => void;
+};

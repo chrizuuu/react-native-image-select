@@ -27,7 +27,7 @@ export interface CameraRollReturned {
   getImagesById: (ids: string[]) => (SelectedImage | undefined)[];
 }
 
-export const useImageSelectorHandlers = (
+export const useImageSelectHandlers = (
   isVisible: boolean,
   startIndex: number
 ): CameraRollReturned => {

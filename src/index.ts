@@ -1,4 +1,4 @@
 import ImageSelector from './ImageSelector';
-import { useImageSelector } from './useImageSelector';
+import { useImageSelect } from './useImageSelect';
 
-export { ImageSelector, useImageSelector };
+export { ImageSelector, useImageSelect };

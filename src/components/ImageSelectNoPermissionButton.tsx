@@ -3,7 +3,7 @@ import { Button } from 'react-native';
 import { Linking, View, StyleSheet } from 'react-native';
 import { Text } from './Text/Text';
 
-export function ImagePickerNoPermissionButton() {
+export function ImageSelectNoPermissionButton() {
   return (
     <View style={styles.wrapper}>
       <Text>No permission</Text>

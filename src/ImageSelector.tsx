@@ -1,42 +1,39 @@
 import React, { forwardRef, memo } from 'react';
-import { ImagePickerContainer } from './components/ImagePickerContainer';
-import { ImagePickerContent } from './components/ImagePickerContent';
+import { ImageSelectContainer } from './components/ImageSelectContainer';
+import { ImageSelectContent } from './components/ImageSelectContent';
 import { SelectedImage } from './types';
-import { ImageSelectorContextHandler } from './context/ImageSelectorContext.type';
-import ImageSelectorContext from './context/ImageSelectorContext';
+import { ImageSelectContextHandler } from './context/ImageSelectContext.type';
+import ImageSelectContext from './context/ImageSelectContext';
 
 interface ImageSelectorProps {
-  onDone: () => void;
   onCancel: () => void;
   isVisible: boolean;
   startIndex?: number;
-  callback: (selectedImages: (SelectedImage | undefined)[]) => void;
+  onDone: (selectedImages: (SelectedImage | undefined)[]) => void;
 }
 
 function ImageSelectorComponent() {
   return (
-    <ImagePickerContainer>
-      <ImagePickerContent />
-    </ImagePickerContainer>
+    <ImageSelectContainer>
+      <ImageSelectContent />
+    </ImageSelectContainer>
   );
 }
 
-const ImageSelector = forwardRef<
-  ImageSelectorContextHandler,
-  ImageSelectorProps
->(({ onDone, onCancel, isVisible, startIndex, callback }, ref) => {
-  return (
-    <ImageSelectorContext
-      ref={ref}
-      isVisible={isVisible}
-      onDone={onDone}
-      onCancel={onCancel}
-      startIndex={startIndex}
-      callback={callback}
-    >
-      <ImageSelectorComponent />
-    </ImageSelectorContext>
-  );
-});
+const ImageSelector = forwardRef<ImageSelectContextHandler, ImageSelectorProps>(
+  ({ onCancel, isVisible, startIndex, onDone }, ref) => {
+    return (
+      <ImageSelectContext
+        ref={ref}
+        isVisible={isVisible}
+        onCancel={onCancel}
+        startIndex={startIndex}
+        onDone={onDone}
+      >
+        <ImageSelectorComponent />
+      </ImageSelectContext>
+    );
+  }
+);
 
 export default memo(ImageSelector);

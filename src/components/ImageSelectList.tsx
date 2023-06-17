@@ -1,10 +1,10 @@
 import React from 'react';
 import ImageItem from './ImageItem';
 import GridList from './GridList/GridList';
-import { useImageSelectorImages } from '../context/ImageSelectorContext';
+import { useImageSelectImages } from '../context/ImageSelectContext';
 
-export function ImagePickerList() {
-  const { photos, onEndReached } = useImageSelectorImages();
+export function ImageSelectList() {
+  const { photos, onEndReached } = useImageSelectImages();
 
   return (
     <GridList
