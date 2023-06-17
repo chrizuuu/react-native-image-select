@@ -11,12 +11,12 @@ import {
   CameraRoll,
   PhotoIdentifier,
 } from '@react-native-camera-roll/camera-roll';
-import { SelectedImage } from '../../types';
+import { SelectedImages } from '../../types';
 import { normalizeImagePicker } from './CameraRollState.schema';
 
 const convertCameraRollPicturesToSelectedImageType = (
   edges: PhotoIdentifier[]
-): SelectedImage[] => {
+): SelectedImages => {
   return edges.map((edge) => {
     return {
       filename: edge.node.image.filename!,
@@ -162,13 +162,13 @@ export function useCameraRollState(isVisible: boolean) {
 
   const getImagesById = useCallback(
     (ids: string[]) => {
-      return ids.map((a) => cameraRollState.entities[a]);
+      return ids.map((a) => cameraRollState.entities[a]!);
     },
     [cameraRollState.entities]
   );
 
   const photos = useMemo(
-    () => cameraRollState.ids.map((uri) => cameraRollState.entities[uri]),
+    () => cameraRollState.ids.map((uri) => cameraRollState.entities[uri]!),
     [cameraRollState.ids, cameraRollState.entities]
   );
 

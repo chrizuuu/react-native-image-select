@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ImageSelectContextHandler } from './context/ImageSelectContext.type';
-import { SelectedImage } from './types';
+import { SelectedImages } from './types';
 
 export interface useImageSelectReturned {
   isImageSelectVisible: boolean;
   openImageSelect: () => void;
   onCancel: () => void;
-  onDone: (images: (SelectedImage | undefined)[]) => void;
-  selectedImages: (SelectedImage | undefined)[];
+  onDone: (images: SelectedImages) => void;
+  selectedImages: SelectedImages;
   onRemoveSelectedImage: (imageUri: string) => void;
   clearSelectedImages: () => void;
 }
@@ -15,9 +15,7 @@ export interface useImageSelectReturned {
 export function useImageSelect(): useImageSelectReturned {
   const imageSelectRef = useRef<ImageSelectContextHandler>(null);
   const [isImageSelectVisible, setIsImageSelectVisible] = useState(false);
-  const [selectedImages, setSelectedImages] = useState<
-    (SelectedImage | undefined)[]
-  >([]);
+  const [selectedImages, setSelectedImages] = useState<SelectedImages>([]);
 
   const openImageSelect = useCallback(() => {
     setIsImageSelectVisible(true);
@@ -42,7 +40,7 @@ export function useImageSelect(): useImageSelectReturned {
   }, []);
 
   const onDone = useCallback(
-    (newSelectedImages: (SelectedImage | undefined)[]) => {
+    (newSelectedImages: SelectedImages) => {
       setSelectedImages(newSelectedImages);
       closeImageSelect();
     },

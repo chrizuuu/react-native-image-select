@@ -6,13 +6,13 @@ import { hasAndroidGalleryPermission } from '../helpers/hasAndroidGalleryPermiss
 import { isAboveIOS14 } from '../helpers/isAboveIOS14';
 import { useCameraRollState } from './useCameraRollState/useCameraRollState';
 import { useSelectedImage } from './useSelectedImage/useSelectedImage';
-import { SelectedImage } from 'src/types';
+import { SelectedImages } from 'src/types';
 import { NativeEventSubscription } from 'react-native';
 import { AppState } from 'react-native';
 import { EmitterSubscription } from 'react-native';
 
 export interface CameraRollReturned {
-  photos: (SelectedImage | undefined)[];
+  photos: SelectedImages;
   onEndReached: () => void;
   isReloading: boolean;
   isInitializing: boolean;
@@ -24,7 +24,7 @@ export interface CameraRollReturned {
   handleRestoreSelectedImages: () => void;
   handleClearSelectedImages: () => void;
   selectedImages: string[];
-  getImagesById: (ids: string[]) => (SelectedImage | undefined)[];
+  getImagesById: (ids: string[]) => SelectedImages;
 }
 
 export const useImageSelectHandlers = (

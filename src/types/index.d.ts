@@ -17,3 +17,5 @@ export interface SelectedImage {
   orientation: number | null; // Adnroid only
   selectedPosition: number | undefined;
 }
+
+export type SelectedImages = SelectedImage[];

@@ -1,7 +1,7 @@
 import React, { forwardRef, memo } from 'react';
 import { ImageSelectContainer } from './components/ImageSelectContainer';
 import { ImageSelectContent } from './components/ImageSelectContent';
-import { SelectedImage } from './types';
+import { SelectedImages } from './types';
 import { ImageSelectContextHandler } from './context/ImageSelectContext.type';
 import ImageSelectContext from './context/ImageSelectContext';
 
@@ -9,7 +9,7 @@ interface ImageSelectorProps {
   onCancel: () => void;
   isVisible: boolean;
   startIndex?: number;
-  onDone: (selectedImages: (SelectedImage | undefined)[]) => void;
+  onDone: (selectedImages: SelectedImages) => void;
 }
 
 function ImageSelectorComponent() {

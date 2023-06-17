@@ -9,11 +9,16 @@ import {
   SafeAreaView,
   Dimensions,
 } from 'react-native';
-import {ImageSelector} from '../src';
+import {ImageSelector, useImageSelect} from '../src';
 
 export default function App() {
-  const [isVisible, setIsVisible] = React.useState(false);
-  const [selectedImages, setSelectedImages] = React.useState<string[]>();
+  const {
+    isImageSelectVisible,
+    openImageSelect,
+    onCancel,
+    selectedImages,
+    onDone,
+  } = useImageSelect();
 
   return (
     <SafeAreaView>
@@ -21,24 +26,18 @@ export default function App() {
         <View style={styles.container}>
           <Text style={styles.title}>react-native-image-select</Text>
           <View style={styles.button}>
-            <Button
-              title="Open ImagePicker"
-              onPress={() => setIsVisible(true)}
-            />
+            <Button title="Open ImagePicker" onPress={openImageSelect} />
           </View>
 
           <View>
             {selectedImages?.map(i => (
-              <Image key={i} source={{uri: i}} style={styles.image} />
+              <Image key={i.uri} source={{uri: i.uri}} style={styles.image} />
             ))}
           </View>
           <ImageSelector
-            isVisible={isVisible}
-            onCancel={() => setIsVisible(false)}
-            onDone={() => setIsVisible(false)}
-            callback={_selectedImages =>
-              setSelectedImages(_selectedImages.map(s => s!.uri))
-            }
+            isVisible={isImageSelectVisible}
+            onCancel={onCancel}
+            onDone={onDone}
           />
         </View>
       </ScrollView>
