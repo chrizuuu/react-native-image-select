@@ -1,27 +1,24 @@
 import React, { forwardRef, memo } from 'react';
 import { ImageSelectContainer } from './components/ImageSelectContainer';
 import { ImageSelectContent } from './components/ImageSelectContent';
-import { SelectedImages } from './types';
+import { ImageSelectorProps } from './types';
 import { ImageSelectContextHandler } from './context/ImageSelectContext.type';
 import ImageSelectContext from './context/ImageSelectContext';
 
-interface ImageSelectorProps {
-  onCancel: () => void;
-  isVisible: boolean;
-  startIndex?: number;
-  onDone: (selectedImages: SelectedImages) => void;
+interface ImageSelectorComponentProps {
+  header: ImageSelectorProps['header'];
 }
 
-function ImageSelectorComponent() {
+function ImageSelectorComponent({ header }: ImageSelectorComponentProps) {
   return (
-    <ImageSelectContainer>
+    <ImageSelectContainer header={header}>
       <ImageSelectContent />
     </ImageSelectContainer>
   );
 }
 
 const ImageSelector = forwardRef<ImageSelectContextHandler, ImageSelectorProps>(
-  ({ onCancel, isVisible, startIndex, onDone }, ref) => {
+  ({ onCancel, isVisible, startIndex, onDone, header }, ref) => {
     return (
       <ImageSelectContext
         ref={ref}
@@ -30,7 +27,7 @@ const ImageSelector = forwardRef<ImageSelectContextHandler, ImageSelectorProps>(
         startIndex={startIndex}
         onDone={onDone}
       >
-        <ImageSelectorComponent />
+        <ImageSelectorComponent header={header} />
       </ImageSelectContext>
     );
   }

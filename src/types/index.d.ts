@@ -2,6 +2,7 @@ import {
   PhotoIdentifier,
   PhotoIdentifiersPage,
 } from '@react-native-camera-roll/camera-roll';
+import { HeaderCustomizationProps } from './customization';
 
 export interface CameraRollReturnedPhoto extends PhotoIdentifier {}
 
@@ -19,3 +20,11 @@ export interface SelectedImage {
 }
 
 export type SelectedImages = SelectedImage[];
+
+export interface ImageSelectorProps {
+  onCancel: () => void;
+  isVisible: boolean;
+  startIndex?: number;
+  onDone: (selectedImages: SelectedImages) => void;
+  header?: HeaderCustomizationProps;
+}

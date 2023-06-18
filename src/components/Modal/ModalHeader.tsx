@@ -1,28 +1,36 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text } from '../Text/Text';
+import { HeaderCustomizationProps } from 'src/types/customization';
 
-interface ModalHeaderProps {
+interface ModalHeaderProps extends HeaderCustomizationProps {
   onClose: () => void;
   onDone: () => void;
 }
 
-export function ModalHeader({ onClose, onDone }: ModalHeaderProps) {
+export function ModalHeader({ onClose, onDone, ...props }: ModalHeaderProps) {
   return (
     <View style={styles.wrapper}>
       <View style={[styles.sideComponent, styles.leftComponent]}>
         <TouchableOpacity onPress={onClose}>
-          <Text>Cancel</Text>
+          <Text style={props.cancelButtonLabelStyle}>
+            {props.cancelButtonLabelText ?? 'Cancel'}
+          </Text>
         </TouchableOpacity>
       </View>
       <View style={styles.mainComponent}>
         <Text numberOfLines={1} style={styles.text}>
-          Select images
+          {props.title ?? 'Select images'}
         </Text>
       </View>
       <View style={[styles.sideComponent, styles.rightComponent]}>
-        <TouchableOpacity onPress={onDone}>
-          <Text style={styles.doneBtnLabel}>Done</Text>
+        <TouchableOpacity
+          style={props.doneButtonStyle ?? styles.doneButton}
+          onPress={onDone}
+        >
+          <Text style={props.doneButtonLabelStyle ?? styles.doneButtonLabel}>
+            {props.doneButtonLabelText ?? 'Done'}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -33,6 +41,8 @@ const styles = StyleSheet.create({
   wrapper: {
     height: 54,
     flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: '#e6e6e6',
   },
   sideComponent: {
     flex: 1,
@@ -60,7 +70,16 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#000',
   },
-  doneBtnLabel: {
-    color: '#2979ff',
+
+  doneButton: {
+    backgroundColor: '#2979ff',
+    paddingHorizontal: 8,
+    paddingVertical: 6,
+    borderRadius: 8,
+  },
+  doneButtonLabel: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: 'bold',
   },
 });
