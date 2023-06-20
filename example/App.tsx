@@ -9,7 +9,7 @@ import {
   SafeAreaView,
   Dimensions,
 } from 'react-native';
-import {ImageSelector, useImageSelect} from '../src';
+import ImageSelect, {useImageSelect} from '../src';
 
 export default function App() {
   const {
@@ -34,7 +34,7 @@ export default function App() {
               <Image key={i.uri} source={{uri: i.uri}} style={styles.image} />
             ))}
           </View>
-          <ImageSelector
+          <ImageSelect
             isVisible={isImageSelectVisible}
             onCancel={onCancel}
             onDone={onDone}

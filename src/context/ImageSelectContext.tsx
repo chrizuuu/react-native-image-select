@@ -8,13 +8,13 @@ import React, {
 } from 'react';
 import {
   ImageSelectContextProps,
-  ImageSelectContextHandler,
   ImageSelectImagesProvider,
   ImageSelectImageItemProvider,
   ImageSelectStateProvider,
   ImageSelectPropertiesProvider,
 } from './ImageSelectContext.type';
 import { useImageSelectHandlers } from '../hooks/useImageSelectHandlers';
+import { ImageSelectMethods } from '../types';
 
 const ImageSelectContextProperties = createContext<
   ImageSelectPropertiesProvider | undefined
@@ -30,7 +30,7 @@ const ImageSelectContextImageItem = createContext<
 >(undefined);
 
 const ImageSelectContext = forwardRef<
-  ImageSelectContextHandler,
+  ImageSelectMethods,
   ImageSelectContextProps
 >(({ onCancel, isVisible, startIndex, children, onDone }, ref) => {
   const {

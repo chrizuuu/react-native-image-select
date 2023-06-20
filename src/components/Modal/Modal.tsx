@@ -3,12 +3,12 @@ import { StyleSheet } from 'react-native';
 import { View, Modal as RNModal, ModalProps } from 'react-native';
 import { ModalHeader } from './ModalHeader';
 import { SafeAreaView } from 'react-native';
-import { HeaderCustomizationProps } from 'src/types/customization';
+import { ImageSelectHeaderCustomizationProps } from '../../types';
 
 export interface ImagePickerModalProps extends ModalProps {
   onClose: () => void;
   onDone: () => void;
-  header?: HeaderCustomizationProps;
+  header?: ImageSelectHeaderCustomizationProps;
 }
 
 export const Modal = ({ onClose, onDone, ...props }: ImagePickerModalProps) => {

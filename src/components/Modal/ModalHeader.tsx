@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text } from '../Text/Text';
-import { HeaderCustomizationProps } from 'src/types/customization';
+import { ImageSelectHeaderCustomizationProps } from '../../types';
 
-interface ModalHeaderProps extends HeaderCustomizationProps {
+interface ModalHeaderProps extends ImageSelectHeaderCustomizationProps {
   onClose: () => void;
   onDone: () => void;
 }

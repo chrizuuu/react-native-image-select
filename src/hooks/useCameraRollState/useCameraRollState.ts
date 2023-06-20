@@ -27,12 +27,13 @@ const convertCameraRollPicturesToSelectedImageType = (
       type: edge.node.type,
       fileSize: edge.node.image.fileSize,
       extension: edge.node.image.extension,
-      selectedPosition: undefined,
+      playableDuration: edge.node.image.playableDuration,
+      selectedPosition: null,
     };
   });
 };
 
-function cameraRolLReducer(
+export function cameraRollReducer(
   state: Draft<CameraRollPhotosState>,
   action: CameraRollPhotosActions
 ) {
@@ -45,7 +46,7 @@ function cameraRolLReducer(
       }
       state.ids = state.ids.concat(action.payload.result);
       break;
-    case CameraRollPhotosType.FULFILED_LIBRARY_SELECTION_CHANGED:
+    case CameraRollPhotosType.FULFILED_IOS_LIBRARY_SELECTION_CHANGED:
       if (action.payload.entities.images) {
         Object.entries(action.payload.entities.images).forEach((entry) => {
           state.entities[entry[0]] = entry[1];
@@ -70,7 +71,7 @@ export function useCameraRollState(isVisible: boolean) {
   const [cameraRollState, dispatch] = useImmerReducer<
     CameraRollPhotosState,
     CameraRollPhotosActions
-  >(cameraRolLReducer, initialCameraRollState);
+  >(cameraRollReducer, initialCameraRollState);
 
   const cameraRollHandler = useCallback(
     async (withNextCursor: boolean) => {
@@ -115,7 +116,7 @@ export function useCameraRollState(isVisible: boolean) {
     });
   }, [cameraRollHandler, dispatch]);
 
-  const onLibrarySelectionChange = useCallback(async () => {
+  const onIOSLibrarySelectionChange = useCallback(async () => {
     const response = await cameraRollHandler(false);
 
     dispatch({
@@ -127,7 +128,7 @@ export function useCameraRollState(isVisible: boolean) {
     });
 
     dispatch({
-      type: CameraRollPhotosType.FULFILED_LIBRARY_SELECTION_CHANGED,
+      type: CameraRollPhotosType.FULFILED_IOS_LIBRARY_SELECTION_CHANGED,
       payload: {
         entities: response.entities,
         result: response.result,
@@ -151,7 +152,7 @@ export function useCameraRollState(isVisible: boolean) {
   ]);
 
   const updateItemPositionById = useCallback(
-    (id: string, position: number | undefined) => {
+    (id: string, position: number | null) => {
       dispatch({
         type: CameraRollPhotosType.UPDATE_ITEM_SELECTED_POSITION,
         payload: { id: id, position: position },
@@ -179,6 +180,6 @@ export function useCameraRollState(isVisible: boolean) {
     updateItemPositionById,
     onEndReached,
     getImagesById,
-    onLibrarySelectionChange,
+    onIOSLibrarySelectionChange,
   };
 }

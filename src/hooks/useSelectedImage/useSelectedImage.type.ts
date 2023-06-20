@@ -16,10 +16,7 @@ export type SelectedImageActions =
   | {
       type: SelectedImageType.RESTORE_SELECTED_IMAGES;
       payload: {
-        updateItemPositionById: (
-          id: string,
-          position: number | undefined
-        ) => void;
+        updateItemPositionById: (id: string, position: number | null) => void;
         startIndex: number;
       };
     }
@@ -27,20 +24,14 @@ export type SelectedImageActions =
       type: SelectedImageType.ON_REMOVE_SELECTED_IMAGE;
       payload: {
         id: string;
-        updateItemPositionById: (
-          id: string,
-          position: number | undefined
-        ) => void;
+        updateItemPositionById: (id: string, position: number | null) => void;
         startIndex: number;
       };
     }
   | {
       type: SelectedImageType.RECALCULATE_INDEX_SELECTED_IMAGE;
       payload: {
-        updateItemPositionById: (
-          id: string,
-          position: number | undefined
-        ) => void;
+        updateItemPositionById: (id: string, position: number | null) => void;
         startIndex: number;
       };
     }
@@ -48,10 +39,7 @@ export type SelectedImageActions =
       type: SelectedImageType.TOGGLE_SELECTED;
       payload: {
         id: string;
-        updateItemPositionById: (
-          id: string,
-          position: number | undefined
-        ) => void;
+        updateItemPositionById: (id: string, position: number | null) => void;
         startIndex: number;
       };
     }
@@ -59,9 +47,6 @@ export type SelectedImageActions =
   | {
       type: SelectedImageType.CLEAR_SELECTED_IMAGES;
       payload: {
-        updateItemPositionById: (
-          id: string,
-          position: number | undefined
-        ) => void;
+        updateItemPositionById: (id: string, position: number | null) => void;
       };
     };

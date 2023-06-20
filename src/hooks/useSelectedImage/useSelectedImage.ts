@@ -7,12 +7,12 @@ import {
 import { Draft } from 'immer';
 import { useCallback } from 'react';
 
-function selectedImageReducer(
+export function selectedImageReducer(
   state: Draft<SelectedImageState>,
   action: SelectedImageActions
 ) {
   let imageIndexInSelectedImages: number;
-  let newPosition: number | undefined;
+  let newPosition: number | null;
   switch (action.type) {
     case SelectedImageType.TOGGLE_SELECTED:
       imageIndexInSelectedImages = state.selectedImages.findIndex(
@@ -23,7 +23,7 @@ function selectedImageReducer(
           ...state.selectedImages.slice(0, imageIndexInSelectedImages),
           ...state.selectedImages.slice(imageIndexInSelectedImages + 1),
         ];
-        action.payload.updateItemPositionById(action.payload.id, undefined);
+        action.payload.updateItemPositionById(action.payload.id, null);
         state.selectedImages.forEach((selectedImage) => {
           const index = state.selectedImages.findIndex(
             (a) => a === selectedImage
@@ -42,7 +42,7 @@ function selectedImageReducer(
         (a) => a === action.payload.id
       );
       if (imageIndexInSelectedImages > -1) {
-        action.payload.updateItemPositionById(action.payload.id, undefined);
+        action.payload.updateItemPositionById(action.payload.id, null);
         state.selectedImages = [
           ...state.selectedImages.slice(0, imageIndexInSelectedImages),
           ...state.selectedImages.slice(imageIndexInSelectedImages + 1),
@@ -70,7 +70,7 @@ function selectedImageReducer(
       break;
     case SelectedImageType.RESTORE_SELECTED_IMAGES:
       state.selectedImages.forEach((selectedImage) => {
-        action.payload.updateItemPositionById(selectedImage, undefined);
+        action.payload.updateItemPositionById(selectedImage, null);
       });
       state.selectedImages = state.savedSelectedImages;
       state.selectedImages.forEach((selectedImage) => {
@@ -84,7 +84,7 @@ function selectedImageReducer(
 
     case SelectedImageType.CLEAR_SELECTED_IMAGES:
       state.selectedImages.forEach((selectedImage) => {
-        action.payload.updateItemPositionById(selectedImage, undefined);
+        action.payload.updateItemPositionById(selectedImage, null);
       });
       state.selectedImages = [];
       state.savedSelectedImages = [];
@@ -92,7 +92,7 @@ function selectedImageReducer(
 }
 
 interface useSelectedImageProps {
-  updateItemPositionById: (id: string, position: number | undefined) => void;
+  updateItemPositionById: (id: string, position: number | null) => void;
   startIndex: number;
 }
 

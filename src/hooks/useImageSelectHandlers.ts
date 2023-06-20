@@ -41,7 +41,7 @@ export const useImageSelectHandlers = (
     updateItemPositionById,
     onEndReached,
     getImagesById,
-    onLibrarySelectionChange,
+    onIOSLibrarySelectionChange,
   } = useCameraRollState(isVisible);
   const {
     handleToggleSelectedImage,
@@ -88,7 +88,7 @@ export const useImageSelectHandlers = (
         'onLibrarySelectionChange',
         async () => {
           setIsReloading(true);
-          await onLibrarySelectionChange();
+          await onIOSLibrarySelectionChange();
           setIsReloading(false);
         }
       );
@@ -99,7 +99,7 @@ export const useImageSelectHandlers = (
         subscription.remove();
       }
     };
-  }, [loadNextPagePictures, isVisible, onLibrarySelectionChange]);
+  }, [loadNextPagePictures, isVisible, onIOSLibrarySelectionChange]);
 
   useEffect(() => {
     (async () => {

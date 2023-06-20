@@ -11,7 +11,7 @@ export enum CameraRollPhotosType {
   FULFILED = 'FULFILED',
   ON_LIST_LOADED = 'ON_LIST_LOADED',
   UPDATE_ITEM_SELECTED_POSITION = 'UPDATE_ITEM_SELECTED_POSITION',
-  FULFILED_LIBRARY_SELECTION_CHANGED = 'FULFILED_LIBRARY_SELECTION_CHANGED',
+  FULFILED_IOS_LIBRARY_SELECTION_CHANGED = 'FULFILED_IOS_LIBRARY_SELECTION_CHANGED',
 }
 
 export type CameraRollPhotosActions =
@@ -28,10 +28,10 @@ export type CameraRollPhotosActions =
     }
   | {
       type: CameraRollPhotosType.UPDATE_ITEM_SELECTED_POSITION;
-      payload: { id: string; position: number | undefined };
+      payload: { id: string; position: number | null };
     }
   | {
-      type: CameraRollPhotosType.FULFILED_LIBRARY_SELECTION_CHANGED;
+      type: CameraRollPhotosType.FULFILED_IOS_LIBRARY_SELECTION_CHANGED;
       payload: {
         result: string[];
         entities: { images: { [key: string]: SelectedImage } };

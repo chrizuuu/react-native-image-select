@@ -1,6 +1,6 @@
 import React from 'react';
-import { CameraRollReturned } from '../hooks/useImageSelectHandlers';
 import { SelectedImages } from '../types';
+import { CameraRollReturned } from '../hooks/useImageSelectHandlers';
 
 export interface ImageSelectContextProps {
   onCancel: () => void;
@@ -8,14 +8,6 @@ export interface ImageSelectContextProps {
   startIndex?: number;
   children: React.ReactNode;
   onDone: (selectedImages: SelectedImages) => void;
-}
-
-export interface ImageSelectContextHandler {
-  handleRemoveSelectedImage: (id: string) => void;
-  handleRecalculateIndexOfSelectedImages: () => void;
-  handleCreateBackupSelectedImages: () => void;
-  handleRestoreSelectedImages: () => void;
-  handleClearSelectedImages: () => void;
 }
 
 export interface ImageSelectImagesProvider {

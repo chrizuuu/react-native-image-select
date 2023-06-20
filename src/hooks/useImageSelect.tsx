@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ImageSelectContextHandler } from './context/ImageSelectContext.type';
-import { SelectedImages } from './types';
+import { SelectedImages } from '../types';
+import ImageSelect from '../ImageSelect';
 
 export interface useImageSelectReturned {
   isImageSelectVisible: boolean;
@@ -13,7 +13,7 @@ export interface useImageSelectReturned {
 }
 
 export function useImageSelect(): useImageSelectReturned {
-  const imageSelectRef = useRef<ImageSelectContextHandler>(null);
+  const imageSelectRef = useRef<ImageSelect>(null);
   const [isImageSelectVisible, setIsImageSelectVisible] = useState(false);
   const [selectedImages, setSelectedImages] = useState<SelectedImages>([]);
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import { useImageSelectProperties } from '../context/ImageSelectContext';
 import { Modal } from './Modal/Modal';
-import { HeaderCustomizationProps } from 'src/types/customization';
+import { ImageSelectHeaderCustomizationProps } from 'src/types';
 
 interface ImageSelectContainerProps {
   children: React.ReactNode;
-  header?: HeaderCustomizationProps;
+  header?: ImageSelectHeaderCustomizationProps;
 }
 
 export function ImageSelectContainer(props: ImageSelectContainerProps) {
