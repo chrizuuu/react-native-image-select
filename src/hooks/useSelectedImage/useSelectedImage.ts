@@ -5,7 +5,7 @@ import {
   SelectedImageType,
 } from './useSelectedImage.type';
 import { Draft } from 'immer';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 
 export function selectedImageReducer(
   state: Draft<SelectedImageState>,
@@ -166,6 +166,10 @@ export function useSelectedImage({
       payload: { updateItemPositionById: updateItemPositionById },
     });
   }, [dispatch, updateItemPositionById]);
+
+  useEffect(() => {
+    handleRecalculateIndexOfSelectedImages();
+  }, [startIndex, handleRecalculateIndexOfSelectedImages]);
 
   return {
     handleRecalculateIndexOfSelectedImages,
