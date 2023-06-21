@@ -1,15 +1,17 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { Ref, useCallback, useEffect, useRef, useState } from 'react';
 import { SelectedImages } from '../types';
 import ImageSelect from '../ImageSelect';
 
 export interface useImageSelectReturned {
+  imageSelectRef: Ref<ImageSelect>;
   isImageSelectVisible: boolean;
   openImageSelect: () => void;
   onCancel: () => void;
-  onDone: (images: SelectedImages) => void;
+  onDone: () => void;
   selectedImages: SelectedImages;
   onRemoveSelectedImage: (imageUri: string) => void;
   clearSelectedImages: () => void;
+  callback: (images: SelectedImages) => void;
 }
 
 export function useImageSelect(): useImageSelectReturned {
@@ -31,6 +33,10 @@ export function useImageSelect(): useImageSelectReturned {
     imageSelectRef.current?.handleRestoreSelectedImages();
   }, [closeImageSelect]);
 
+  const onDone = useCallback(() => {
+    closeImageSelect();
+  }, [closeImageSelect]);
+
   const onRemoveSelectedImage = useCallback((imageUri: string) => {
     imageSelectRef.current?.handleRemoveSelectedImage(imageUri);
   }, []);
@@ -39,19 +45,16 @@ export function useImageSelect(): useImageSelectReturned {
     imageSelectRef.current?.handleClearSelectedImages();
   }, []);
 
-  const onDone = useCallback(
-    (newSelectedImages: SelectedImages) => {
-      setSelectedImages(newSelectedImages);
-      closeImageSelect();
-    },
-    [closeImageSelect]
-  );
+  const callback = useCallback((newSelectedImages: SelectedImages) => {
+    setSelectedImages(newSelectedImages);
+  }, []);
 
   useEffect(() => {
     clearSelectedImages();
   }, [clearSelectedImages]);
 
   return {
+    imageSelectRef,
     isImageSelectVisible,
     openImageSelect,
     onCancel,
@@ -59,5 +62,6 @@ export function useImageSelect(): useImageSelectReturned {
     selectedImages,
     clearSelectedImages,
     onDone,
+    callback,
   };
 }

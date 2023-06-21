@@ -7,7 +7,7 @@ import ImageSelectContext from './context/ImageSelectContext';
 type ImageSelect = ImageSelectMethods;
 
 const ImageSelectComponent = forwardRef<ImageSelect, ImageSelectProps>(
-  ({ onCancel, isVisible, startIndex, onDone, header }, ref) => {
+  ({ onCancel, isVisible, startIndex, onDone, header, callback }, ref) => {
     return (
       <ImageSelectContext
         ref={ref}
@@ -15,6 +15,7 @@ const ImageSelectComponent = forwardRef<ImageSelect, ImageSelectProps>(
         onCancel={onCancel}
         startIndex={startIndex}
         onDone={onDone}
+        callback={callback}
       >
         <ImageSelectContainer header={header}>
           <ImageSelectContent />

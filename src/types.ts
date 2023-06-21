@@ -41,6 +41,12 @@ export interface ImageSelectProps {
    */
   onCancel: () => void;
   /**
+   * Callback to be fired when the user approves the selected images
+   *
+   * @type () => void;
+   */
+  onDone: () => void;
+  /**
    * Show/hide image select
    *
    * @type boolean;
@@ -53,11 +59,11 @@ export interface ImageSelectProps {
    */
   startIndex?: number;
   /**
-   * Callback triggered when the user approves the selected images
+   * Callback triggered when selected images change.
    *
    * @type (selectedImages:SelectedImages) => void;
    */
-  onDone: (selectedImages: SelectedImages) => void;
+  callback: (selectedImages: SelectedImages) => void;
   /**
    * Props used to customize the header
    *

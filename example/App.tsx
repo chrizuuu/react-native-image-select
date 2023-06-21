@@ -13,10 +13,14 @@ import ImageSelect, {useImageSelect} from '../src';
 
 export default function App() {
   const {
+    callback,
+    imageSelectRef,
     isImageSelectVisible,
     openImageSelect,
     onCancel,
     selectedImages,
+    clearSelectedImages,
+    onRemoveSelectedImage,
     onDone,
   } = useImageSelect();
 
@@ -31,13 +35,22 @@ export default function App() {
 
           <View>
             {selectedImages?.map(i => (
-              <Image key={i.uri} source={{uri: i.uri}} style={styles.image} />
+              <View key={i.uri}>
+                <Image source={{uri: i.uri}} style={styles.image} />
+                <Button
+                  title="Remove image"
+                  onPress={() => onRemoveSelectedImage(i.uri)}
+                />
+              </View>
             ))}
           </View>
+          <Button title="Clear selected images" onPress={clearSelectedImages} />
           <ImageSelect
+            ref={imageSelectRef}
             isVisible={isImageSelectVisible}
             onCancel={onCancel}
             onDone={onDone}
+            callback={callback}
           />
         </View>
       </ScrollView>

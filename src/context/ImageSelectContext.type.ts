@@ -1,13 +1,14 @@
 import React from 'react';
-import { SelectedImages } from '../types';
+import { ImageSelectProps } from '../types';
 import { CameraRollReturned } from '../hooks/useImageSelectHandlers';
 
 export interface ImageSelectContextProps {
-  onCancel: () => void;
-  isVisible: boolean;
-  startIndex?: number;
+  onDone: ImageSelectProps['onDone'];
+  onCancel: ImageSelectProps['onCancel'];
+  isVisible: ImageSelectProps['isVisible'];
+  startIndex?: ImageSelectProps['startIndex'];
   children: React.ReactNode;
-  onDone: (selectedImages: SelectedImages) => void;
+  callback: ImageSelectProps['callback'];
 }
 
 export interface ImageSelectImagesProvider {

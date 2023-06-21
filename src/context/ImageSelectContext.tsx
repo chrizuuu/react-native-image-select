@@ -2,9 +2,9 @@ import React, {
   createContext,
   forwardRef,
   useContext,
-  useCallback,
   useImperativeHandle,
   useMemo,
+  useEffect,
 } from 'react';
 import {
   ImageSelectContextProps,
@@ -32,7 +32,7 @@ const ImageSelectContextImageItem = createContext<
 const ImageSelectContext = forwardRef<
   ImageSelectMethods,
   ImageSelectContextProps
->(({ onCancel, isVisible, startIndex, children, onDone }, ref) => {
+>(({ onCancel, isVisible, startIndex, children, onDone, callback }, ref) => {
   const {
     photos,
     onEndReached,
@@ -49,9 +49,9 @@ const ImageSelectContext = forwardRef<
     getImagesById,
   } = useImageSelectHandlers(isVisible, startIndex ?? 0);
 
-  const _onDone = useCallback(() => {
-    onDone(getImagesById(selectedImages));
-  }, [onDone, getImagesById, selectedImages]);
+  useEffect(() => {
+    callback(getImagesById(selectedImages));
+  }, [callback, getImagesById, selectedImages]);
 
   useImperativeHandle(
     ref,
@@ -75,11 +75,11 @@ const ImageSelectContext = forwardRef<
 
   const PropertiesValue = useMemo(
     () => ({
-      onDone: _onDone,
+      onDone,
       onCancel,
       isVisible,
     }),
-    [isVisible, onCancel, _onDone]
+    [isVisible, onCancel, onDone]
   );
 
   const StateValue = useMemo(
