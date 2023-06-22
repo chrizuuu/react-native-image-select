@@ -14,7 +14,7 @@ React Native Image Select component that allow to select photos from the device'
 - Dependencies are [@react-native-camera-roll/camera-roll](https://github.com/react-native-cameraroll/react-native-cameraroll) and [react-native-permissions](https://github.com/zoontek/react-native-permissions)
 
 <p align="left">
-  <img src="./assets/IOS_EXAMPLE.png" height='520px'>
+  <img src="./assets/IOS_EXAMPLE.PNG" height='520px'>
 </p>
 
 
