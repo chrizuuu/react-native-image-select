@@ -1,7 +1,7 @@
 {
   "name": "react-native-image-select",
   "version": "0.1.0",
-  "description": "test",
+  "description": "Minimalist, customizable component UI that allow to select photos from the device's library",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -32,25 +32,25 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepack": "bob build",
     "release": "release-it",
-    "example": "yarn --cwd example",
-    "bootstrap": "yarn example && yarn install"
+    "example": "yarn --cwd example"
   },
   "keywords": [
     "react-native",
     "ios",
     "android"
   ],
-  "repository": "https://github.com/chrizuuu/react-native-custom-image-picker",
+  "repository": "https://github.com/chrizuuu/react-native-image-select/",
   "author": "Krzysztof Bonecki <krzysztofboneckikontakt@gmail.com> (https://github.com/chrizuuu)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chrizuuu/react-native-custom-image-picker/issues"
+    "url": "https://github.com/chrizuuu/react-native-image-select/issues"
   },
-  "homepage": "https://github.com/chrizuuu/react-native-custom-image-picker#readme",
+  "homepage": "https://github.com/chrizuuu/react-native-image-select/#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.22.5",
     "@commitlint/config-conventional": "^17.0.2",
     "@evilmartians/lefthook": "^1.3.9",
     "@react-native-camera-roll/camera-roll": "^5.3.1",
@@ -73,9 +73,6 @@
     "react-native-permissions": "^3.8.0",
     "release-it": "^15.10.1",
     "typescript": "^5.0.4"
-  },
-  "resolutions": {
-    "@types/react": "17.0.21"
   },
   "peerDependencies": {
     "@react-native-camera-roll/camera-roll": "^5.3.1",
@@ -161,13 +158,8 @@
     ]
   },
   "dependencies": {
-    "@expo/vector-icons": "^13.0.0",
     "immer": "^10.0.2",
     "normalizr": "^3.6.2",
     "use-immer": "^0.9.0"
-  },
-  "reactNativePermissionsIOS": [
-    "PhotoLibrary",
-    "Camera"
-  ]
+  }
 }

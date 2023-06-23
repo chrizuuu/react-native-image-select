@@ -9,7 +9,7 @@ import {
   SafeAreaView,
   Dimensions,
 } from 'react-native';
-import ImageSelect, {useImageSelect} from '../src';
+import ImageSelect, {useImageSelect} from 'react-native-image-select';
 
 export default function App() {
   const {

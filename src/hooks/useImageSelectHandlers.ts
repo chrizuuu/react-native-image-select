@@ -6,7 +6,7 @@ import { hasAndroidGalleryPermission } from '../helpers/hasAndroidGalleryPermiss
 import { isAboveIOS14 } from '../helpers/isAboveIOS14';
 import { useCameraRollState } from './useCameraRollState/useCameraRollState';
 import { useSelectedImage } from './useSelectedImage/useSelectedImage';
-import { SelectedImages } from 'src/types';
+import { SelectedImages } from '../types';
 import { NativeEventSubscription } from 'react-native';
 import { AppState } from 'react-native';
 import { EmitterSubscription } from 'react-native';
