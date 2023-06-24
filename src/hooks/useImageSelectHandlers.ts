@@ -11,7 +11,7 @@ import { NativeEventSubscription } from 'react-native';
 import { AppState } from 'react-native';
 import { EmitterSubscription } from 'react-native';
 
-export interface CameraRollReturned {
+export interface useImageSelectHandlersReturned {
   photos: SelectedImages;
   onEndReached: () => void;
   isReloading: boolean;
@@ -30,7 +30,7 @@ export interface CameraRollReturned {
 export const useImageSelectHandlers = (
   isVisible: boolean,
   startIndex: number
-): CameraRollReturned => {
+): useImageSelectHandlersReturned => {
   const [isReloading, setIsReloading] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
   const [hasCameraRollGranted, setCameraRollGranted] = useState(false);

@@ -8,129 +8,158 @@ import React, {
 } from 'react';
 import {
   ImageSelectContextProps,
-  ImageSelectImagesProvider,
-  ImageSelectImageItemProvider,
-  ImageSelectStateProvider,
-  ImageSelectPropertiesProvider,
+  ImageSelectImagesListContextType,
+  ImageSelectImageItemContextType,
+  ImageSelectContentStateContextType,
+  ImageSelectContainerContextType,
+  ImageSelectHeaderContextType,
 } from './ImageSelectContext.type';
 import { useImageSelectHandlers } from '../hooks/useImageSelectHandlers';
 import { ImageSelectMethods } from '../types';
 
-const ImageSelectContextProperties = createContext<
-  ImageSelectPropertiesProvider | undefined
+const ImageSelectContainerContext = createContext<
+  ImageSelectContainerContextType | undefined
 >(undefined);
-const ImageSelectContextState = createContext<
-  ImageSelectStateProvider | undefined
+const ImageSelectHeaderContext = createContext<
+  ImageSelectHeaderContextType | undefined
 >(undefined);
-const ImageSelectContextImages = createContext<
-  ImageSelectImagesProvider | undefined
+const ImageSelectContentStateContext = createContext<
+  ImageSelectContentStateContextType | undefined
 >(undefined);
-const ImageSelectContextImageItem = createContext<
-  ImageSelectImageItemProvider | undefined
+const ImageSelectImagesListContext = createContext<
+  ImageSelectImagesListContextType | undefined
+>(undefined);
+const ImageSelectImageItemContext = createContext<
+  ImageSelectImageItemContextType | undefined
 >(undefined);
 
 const ImageSelectContext = forwardRef<
   ImageSelectMethods,
   ImageSelectContextProps
->(({ onCancel, isVisible, startIndex, children, onDone, callback }, ref) => {
-  const {
-    photos,
-    onEndReached,
-    isReloading,
-    isInitializing,
-    hasCameraRollGranted,
-    handleToggleSelectedImage,
-    handleRemoveSelectedImage,
-    handleRecalculateIndexOfSelectedImages,
-    handleCreateBackupSelectedImages,
-    handleRestoreSelectedImages,
-    handleClearSelectedImages,
-    selectedImages,
-    getImagesById,
-  } = useImageSelectHandlers(isVisible, startIndex ?? 0);
-
-  useEffect(() => {
-    callback(getImagesById(selectedImages));
-  }, [callback, getImagesById, selectedImages]);
-
-  useImperativeHandle(
-    ref,
-    () => {
-      return {
-        handleRemoveSelectedImage,
-        handleRecalculateIndexOfSelectedImages,
-        handleCreateBackupSelectedImages,
-        handleRestoreSelectedImages,
-        handleClearSelectedImages,
-      };
-    },
-    [
+>(
+  (
+    { onCancel, isVisible, startIndex, children, onDone, callback, header },
+    ref
+  ) => {
+    const {
+      photos,
+      onEndReached,
+      isReloading,
+      isInitializing,
+      hasCameraRollGranted,
+      handleToggleSelectedImage,
       handleRemoveSelectedImage,
       handleRecalculateIndexOfSelectedImages,
       handleCreateBackupSelectedImages,
       handleRestoreSelectedImages,
       handleClearSelectedImages,
-    ]
-  );
+      selectedImages,
+      getImagesById,
+    } = useImageSelectHandlers(isVisible, startIndex ?? 0);
 
-  const PropertiesValue = useMemo(
-    () => ({
-      onDone,
-      onCancel,
-      isVisible,
-    }),
-    [isVisible, onCancel, onDone]
-  );
+    useEffect(() => {
+      callback(getImagesById(selectedImages));
+    }, [callback, getImagesById, selectedImages]);
 
-  const StateValue = useMemo(
-    () => ({
-      isReloading,
-      isInitializing,
-      hasCameraRollGranted,
-    }),
-    [hasCameraRollGranted, isInitializing, isReloading]
-  );
+    useImperativeHandle(
+      ref,
+      () => {
+        return {
+          handleRemoveSelectedImage,
+          handleRecalculateIndexOfSelectedImages,
+          handleCreateBackupSelectedImages,
+          handleRestoreSelectedImages,
+          handleClearSelectedImages,
+        };
+      },
+      [
+        handleRemoveSelectedImage,
+        handleRecalculateIndexOfSelectedImages,
+        handleCreateBackupSelectedImages,
+        handleRestoreSelectedImages,
+        handleClearSelectedImages,
+      ]
+    );
 
-  const ImagesValue = useMemo(
-    () => ({
-      photos,
-      onEndReached,
-    }),
-    [photos, onEndReached]
-  );
+    const ContainerValue = useMemo(
+      () => ({
+        isVisible,
+        onRequestClose: onCancel,
+      }),
+      [isVisible, onCancel]
+    );
 
-  const ImagesItemValue = useMemo(
-    () => ({
-      handleImagePress: (id: string) => handleToggleSelectedImage(id),
-    }),
-    [handleToggleSelectedImage]
-  );
+    const HeaderValue = useMemo(
+      () => ({
+        header,
+        onDone,
+        onCancel,
+      }),
+      [header, onDone, onCancel]
+    );
 
-  return (
-    <ImageSelectContextProperties.Provider value={PropertiesValue}>
-      <ImageSelectContextState.Provider value={StateValue}>
-        <ImageSelectContextImages.Provider value={ImagesValue}>
-          <ImageSelectContextImageItem.Provider value={ImagesItemValue}>
-            {children}
-          </ImageSelectContextImageItem.Provider>
-        </ImageSelectContextImages.Provider>
-      </ImageSelectContextState.Provider>
-    </ImageSelectContextProperties.Provider>
-  );
-});
+    const ContentState = useMemo(
+      () => ({
+        isReloading,
+        isInitializing,
+        hasCameraRollGranted,
+      }),
+      [hasCameraRollGranted, isInitializing, isReloading]
+    );
 
-export function useImageSelectProperties() {
-  const context = useContext(ImageSelectContextProperties);
+    const ImagesListValue = useMemo(
+      () => ({
+        photos,
+        onEndReached,
+      }),
+      [photos, onEndReached]
+    );
+
+    const ImagesItemValue = useMemo(
+      () => ({
+        handleImagePress: (id: string) => handleToggleSelectedImage(id),
+      }),
+      [handleToggleSelectedImage]
+    );
+
+    return (
+      <ImageSelectContainerContext.Provider value={ContainerValue}>
+        <ImageSelectHeaderContext.Provider value={HeaderValue}>
+          <ImageSelectContentStateContext.Provider value={ContentState}>
+            <ImageSelectImagesListContext.Provider value={ImagesListValue}>
+              <ImageSelectImageItemContext.Provider value={ImagesItemValue}>
+                {children}
+              </ImageSelectImageItemContext.Provider>
+            </ImageSelectImagesListContext.Provider>
+          </ImageSelectContentStateContext.Provider>
+        </ImageSelectHeaderContext.Provider>
+      </ImageSelectContainerContext.Provider>
+    );
+  }
+);
+
+export function useImageSelectContainerContext() {
+  const context = useContext(ImageSelectContainerContext);
   if (context === undefined) {
     throw new Error(
-      'useImageSelectProperties must be used within a ImageSelectContextProperties'
+      'useImageSelectContainerContext must be used within a ImageSelectContainerContext'
+    );
+  }
+  return context;
+}
+
+export function useImageSelectHeaderContext() {
+  const context = useContext(ImageSelectHeaderContext);
+  if (context === undefined) {
+    throw new Error(
+      'useImageSelectHeaderContext must be used within a ImageSelectHeaderContext'
     );
   }
   return context;
 }
 
 export function useImageSelectState() {
-  const context = useContext(ImageSelectContextState);
+  const context = useContext(ImageSelectContentStateContext);
   if (context === undefined) {
     throw new Error(
       'useImageSelectState must be used within a ImageSelectContextState'
@@ -139,21 +168,21 @@ export function useImageSelectState() {
   return context;
 }
 
-export function useImageSelectImages() {
-  const context = useContext(ImageSelectContextImages);
+export function useImageSelectImagesListContext() {
+  const context = useContext(ImageSelectImagesListContext);
   if (context === undefined) {
     throw new Error(
-      'useImageSelectImages must be used within a ImageSelectContextImages'
+      'useImageSelectImagesListContext must be used within a ImageSelectImagesListContext'
     );
   }
   return context;
 }
 
-export function useImageSelectImageItem() {
-  const context = useContext(ImageSelectContextImageItem);
+export function useImageSelectImageItemContext() {
+  const context = useContext(ImageSelectImageItemContext);
   if (context === undefined) {
     throw new Error(
-      'useImageSelectImageItem must be used within a ImageSelectContextImageItem'
+      'useImageSelectImageItemContext must be used within a ImageSelectImageItemContext'
     );
   }
   return context;

@@ -5272,6 +5272,11 @@ normalize-path@^3.0.0:
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
   integrity sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==
 
+normalizr@^3.6.2:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/normalizr/-/normalizr-3.6.2.tgz#ac1571207dc3008adb46e3f62311c17f11dcf083"
+  integrity sha512-30qCybsBaCBciotorvuOZTCGEg2AXrJfADMT2Kk/lvpIAcipHdK0zc33nNtwKzyfQAqIJXAcqET6YgflYUgsoQ==
+
 npm-run-path@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/npm-run-path/-/npm-run-path-2.0.2.tgz#35a9232dfa35d7067b4cb2ddf2357b1871536c5f"
@@ -5742,6 +5747,15 @@ react-native-gradle-plugin@^0.71.17:
   version "0.71.17"
   resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.71.17.tgz#cf780a27270f0a32dca8184eff91555d7627dd00"
   integrity sha512-OXXYgpISEqERwjSlaCiaQY6cTY5CH6j73gdkWpK0hedxtiWMWgH+i5TOi4hIGYitm9kQBeyDu+wim9fA8ROFJA==
+
+react-native-image-select@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-image-select/-/react-native-image-select-0.1.0.tgz#c9dbd674965e071477ac5f8b78a99ef5fe97857c"
+  integrity sha512-xTM8vm4vx3dky+PFadFr+SsCSw0BKE6PMGSH/3d/rEbi1/kNkZYTW1IjUznBeVOSwPpWAYPoQoTq454n8sT1yQ==
+  dependencies:
+    immer "^10.0.2"
+    normalizr "^3.6.2"
+    use-immer "^0.9.0"
 
 react-native-permissions@^3.8.0:
   version "3.8.0"

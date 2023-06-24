@@ -1,35 +1,31 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { Text } from '../Text/Text';
-import { ImageSelectHeaderCustomizationProps } from '../../types';
+import { Text } from './atomic/Text/Text';
+import { useImageSelectHeaderContext } from 'src/context/ImageSelectContext';
 
-interface ModalHeaderProps extends ImageSelectHeaderCustomizationProps {
-  onClose: () => void;
-  onDone: () => void;
-}
-
-export function ModalHeader({ onClose, onDone, ...props }: ModalHeaderProps) {
+export function ImageSelectHeader() {
+  const { onCancel, onDone, header } = useImageSelectHeaderContext();
   return (
     <View style={styles.wrapper}>
       <View style={[styles.sideComponent, styles.leftComponent]}>
-        <TouchableOpacity onPress={onClose}>
-          <Text style={props.cancelButtonLabelStyle}>
-            {props.cancelButtonLabelText ?? 'Cancel'}
+        <TouchableOpacity onPress={onCancel}>
+          <Text style={header?.cancelButtonLabelStyle}>
+            {header?.cancelButtonLabelText ?? 'Cancel'}
           </Text>
         </TouchableOpacity>
       </View>
       <View style={styles.mainComponent}>
-        <Text numberOfLines={1} style={styles.text}>
-          {props.title ?? 'Select images'}
+        <Text numberOfLines={1} style={styles.title}>
+          {header?.title ?? 'Select images'}
         </Text>
       </View>
       <View style={[styles.sideComponent, styles.rightComponent]}>
         <TouchableOpacity
-          style={props.doneButtonStyle ?? styles.doneButton}
+          style={header?.doneButtonStyle ?? styles.doneButton}
           onPress={onDone}
         >
-          <Text style={props.doneButtonLabelStyle ?? styles.doneButtonLabel}>
-            {props.doneButtonLabelText ?? 'Done'}
+          <Text style={header?.doneButtonLabelStyle ?? styles.doneButtonLabel}>
+            {header?.doneButtonLabelText ?? 'Done'}
           </Text>
         </TouchableOpacity>
       </View>
@@ -64,7 +60,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 3,
   },
-  text: {
+  title: {
     textAlign: 'center',
     fontSize: 16,
     fontWeight: '600',

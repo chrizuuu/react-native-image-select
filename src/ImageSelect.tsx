@@ -16,8 +16,9 @@ const ImageSelectComponent = forwardRef<ImageSelect, ImageSelectProps>(
         startIndex={startIndex}
         onDone={onDone}
         callback={callback}
+        header={header}
       >
-        <ImageSelectContainer header={header}>
+        <ImageSelectContainer>
           <ImageSelectContent />
         </ImageSelectContainer>
       </ImageSelectContext>

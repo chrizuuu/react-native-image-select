@@ -2,9 +2,9 @@ import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { ActivityIndicator } from 'react-native';
 import { Image, View, TouchableOpacity } from 'react-native';
-import { useImageSelectImageItem } from '../context/ImageSelectContext';
+import { useImageSelectImageItemContext } from '../context/ImageSelectContext';
 import { SelectedImage } from '../types';
-import { Text } from './Text/Text';
+import { Text } from './atomic/Text/Text';
 
 interface ImageItemProps {
   image: SelectedImage;
@@ -12,7 +12,7 @@ interface ImageItemProps {
 
 const ImageItem = ({ image }: ImageItemProps) => {
   const [isLoading, setIsLoading] = useState(true);
-  const { handleImagePress } = useImageSelectImageItem();
+  const { handleImagePress } = useImageSelectImageItemContext();
 
   if (!image) {
     return null;

@@ -1,24 +1,34 @@
 import React from 'react';
-import { useImageSelectProperties } from '../context/ImageSelectContext';
-import { Modal } from './Modal/Modal';
-import { ImageSelectHeaderCustomizationProps } from '../types';
+import { useImageSelectContainerContext } from '../context/ImageSelectContext';
+import { Modal, SafeAreaView, StyleSheet, View } from 'react-native';
+import { ImageSelectHeader } from './ImageSelectHeader';
 
 interface ImageSelectContainerProps {
   children: React.ReactNode;
-  header?: ImageSelectHeaderCustomizationProps;
 }
 
 export function ImageSelectContainer(props: ImageSelectContainerProps) {
-  const { isVisible, onCancel, onDone } = useImageSelectProperties();
+  const { isVisible, onRequestClose } = useImageSelectContainerContext();
 
   return (
     <Modal
       visible={isVisible}
-      onClose={onCancel}
-      onDone={onDone}
-      header={props.header}
+      animationType="slide"
+      onRequestClose={onRequestClose}
     >
-      {props.children}
+      <SafeAreaView style={styles.wrapper}>
+        <ImageSelectHeader />
+        <View style={styles.childrenContainer}>{props.children}</View>
+      </SafeAreaView>
     </Modal>
   );
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
+  childrenContainer: {
+    flex: 1,
+  },
+});
