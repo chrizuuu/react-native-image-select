@@ -1,18 +1,28 @@
 import React from 'react';
 import { ImageSelectList } from './ImageSelectList';
 import { ImageSelectNoPermissionButton } from './ImageSelectNoPermissionButton';
-import { useImageSelectState } from '../context/ImageSelectContext';
-import { ActivityIndicator } from 'react-native';
+import { useImageSelectContentStateContext } from '../context/ImageSelectContext';
+import { View, StyleSheet, ActivityIndicator } from 'react-native';
 
 export function ImageSelectContent() {
-  const { isReloading, isInitializing, hasCameraRollGranted } =
-    useImageSelectState();
+  const { isInitializing, hasCameraRollGranted } =
+    useImageSelectContentStateContext();
 
-  return isReloading || isInitializing ? (
-    <ActivityIndicator size={48} />
+  return isInitializing ? (
+    <View style={styles.activityIndicatorWrapper}>
+      <ActivityIndicator size={'large'} />
+    </View>
   ) : hasCameraRollGranted ? (
     <ImageSelectList />
   ) : (
     <ImageSelectNoPermissionButton />
   );
 }
+
+const styles = StyleSheet.create({
+  activityIndicatorWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

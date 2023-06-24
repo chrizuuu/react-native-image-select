@@ -33,7 +33,7 @@ export interface ImageSelectImageItemContextType {
 
 export type ImageSelectContentStateContextType = Pick<
   useImageSelectHandlersReturned,
-  'hasCameraRollGranted' | 'isInitializing' | 'isReloading'
+  'hasCameraRollGranted' | 'isInitializing'
 >;
 
 export type ImageSelectNoPermissionPageContextType =

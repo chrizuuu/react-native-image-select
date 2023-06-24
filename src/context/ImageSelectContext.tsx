@@ -57,7 +57,6 @@ const ImageSelectContext = forwardRef<
     const {
       photos,
       onEndReached,
-      isReloading,
       isInitializing,
       hasCameraRollGranted,
       handleToggleSelectedImage,
@@ -113,11 +112,10 @@ const ImageSelectContext = forwardRef<
 
     const ContentState = useMemo(
       () => ({
-        isReloading,
         isInitializing,
         hasCameraRollGranted,
       }),
-      [hasCameraRollGranted, isInitializing, isReloading]
+      [hasCameraRollGranted, isInitializing]
     );
 
     const ImagesListValue = useMemo(
@@ -183,11 +181,11 @@ export function useImageSelectHeaderContext() {
   return context;
 }
 
-export function useImageSelectState() {
+export function useImageSelectContentStateContext() {
   const context = useContext(ImageSelectContentStateContext);
   if (context === undefined) {
     throw new Error(
-      'useImageSelectState must be used within a ImageSelectContextState'
+      'useImageSelectContentStateContext must be used within a ImageSelectContentStateContext'
     );
   }
   return context;

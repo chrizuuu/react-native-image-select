@@ -33,7 +33,7 @@ function GridList(props: GridListProps) {
       {...others}
       numColumns={numColumns}
       contentContainerStyle={listContentStyle}
-      onEndReachedThreshold={0}
+      onEndReachedThreshold={5}
       renderItem={_renderItem}
     />
   );

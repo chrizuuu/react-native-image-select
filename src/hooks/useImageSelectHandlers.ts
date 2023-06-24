@@ -14,7 +14,6 @@ import { EmitterSubscription } from 'react-native';
 export interface useImageSelectHandlersReturned {
   photos: SelectedImages;
   onEndReached: () => void;
-  isReloading: boolean;
   isInitializing: boolean;
   hasCameraRollGranted: boolean;
   handleToggleSelectedImage: (id: string) => void;
@@ -27,11 +26,12 @@ export interface useImageSelectHandlersReturned {
   getImagesById: (ids: string[]) => SelectedImages;
 }
 
+const IS_ABOVE_IOS14 = isAboveIOS14();
+
 export const useImageSelectHandlers = (
   isVisible: boolean,
   startIndex: number
 ): useImageSelectHandlersReturned => {
-  const [isReloading, setIsReloading] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
   const [hasCameraRollGranted, setCameraRollGranted] = useState(false);
   const {
@@ -83,19 +83,17 @@ export const useImageSelectHandlers = (
 
   useEffect(() => {
     let subscription: EmitterSubscription;
-    if (isVisible && isAboveIOS14()) {
+    if (IS_ABOVE_IOS14) {
       subscription = cameraRollEventEmitter.addListener(
         'onLibrarySelectionChange',
         async () => {
-          setIsReloading(true);
           await onIOSLibrarySelectionChange();
-          setIsReloading(false);
         }
       );
     }
 
     return () => {
-      if (isAboveIOS14() && subscription) {
+      if (IS_ABOVE_IOS14 && subscription) {
         subscription.remove();
       }
     };
@@ -139,7 +137,6 @@ export const useImageSelectHandlers = (
   return {
     onEndReached,
     photos,
-    isReloading,
     isInitializing,
     hasCameraRollGranted,
     handleToggleSelectedImage,
