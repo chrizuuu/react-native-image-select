@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text } from './atomic/Text/Text';
-import { useImageSelectHeaderContext } from 'src/context/ImageSelectContext';
+import { useImageSelectHeaderContext } from '../context/ImageSelectContext';
 
 export function ImageSelectHeader() {
   const { onCancel, onDone, header } = useImageSelectHeaderContext();

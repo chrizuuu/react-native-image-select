@@ -13,6 +13,7 @@ import {
   ImageSelectContentStateContextType,
   ImageSelectContainerContextType,
   ImageSelectHeaderContextType,
+  ImageSelectNoPermissionPageContextType,
 } from './ImageSelectContext.type';
 import { useImageSelectHandlers } from '../hooks/useImageSelectHandlers';
 import { ImageSelectMethods } from '../types';
@@ -32,13 +33,25 @@ const ImageSelectImagesListContext = createContext<
 const ImageSelectImageItemContext = createContext<
   ImageSelectImageItemContextType | undefined
 >(undefined);
+const ImageSelectNoPermissionPageContext = createContext<
+  ImageSelectNoPermissionPageContextType | undefined
+>(undefined);
 
 const ImageSelectContext = forwardRef<
   ImageSelectMethods,
   ImageSelectContextProps
 >(
   (
-    { onCancel, isVisible, startIndex, children, onDone, callback, header },
+    {
+      onCancel,
+      isVisible,
+      startIndex,
+      children,
+      onDone,
+      callback,
+      header,
+      noPermissionPage,
+    },
     ref
   ) => {
     const {
@@ -122,13 +135,25 @@ const ImageSelectContext = forwardRef<
       [handleToggleSelectedImage]
     );
 
+    const NoPermissionPageValue = useMemo(
+      () => ({
+        noPermissionTitle: noPermissionPage?.noPermissionTitle,
+        getPermissionLabelText: noPermissionPage?.getPermissionLabelText,
+      }),
+      [noPermissionPage]
+    );
+
     return (
       <ImageSelectContainerContext.Provider value={ContainerValue}>
         <ImageSelectHeaderContext.Provider value={HeaderValue}>
           <ImageSelectContentStateContext.Provider value={ContentState}>
             <ImageSelectImagesListContext.Provider value={ImagesListValue}>
               <ImageSelectImageItemContext.Provider value={ImagesItemValue}>
-                {children}
+                <ImageSelectNoPermissionPageContext.Provider
+                  value={NoPermissionPageValue}
+                >
+                  {children}
+                </ImageSelectNoPermissionPageContext.Provider>
               </ImageSelectImageItemContext.Provider>
             </ImageSelectImagesListContext.Provider>
           </ImageSelectContentStateContext.Provider>
@@ -183,6 +208,16 @@ export function useImageSelectImageItemContext() {
   if (context === undefined) {
     throw new Error(
       'useImageSelectImageItemContext must be used within a ImageSelectImageItemContext'
+    );
+  }
+  return context;
+}
+
+export function useImageSelectNoPermissionPageContext() {
+  const context = useContext(ImageSelectNoPermissionPageContext);
+  if (context === undefined) {
+    throw new Error(
+      'useImageSelectNoPermissionPageContext must be used within a ImageSelectNoPermissionPageContext'
     );
   }
   return context;

@@ -36,7 +36,5 @@ export type ImageSelectContentStateContextType = Pick<
   'hasCameraRollGranted' | 'isInitializing' | 'isReloading'
 >;
 
-export type ImageSelectNoPermissionContextTyp = Pick<
-  ImageSelectContextProps,
-  'permissionPage'
->;
+export type ImageSelectNoPermissionPageContextType =
+  ImageSelectProps['noPermissionPage'];

@@ -70,6 +70,7 @@ export interface ImageSelectProps {
    * @type ImageSelectHeaderCustomizationProps;
    */
   header?: ImageSelectHeaderCustomizationProps;
+  noPermissionPage?: ImageSelectNoPermissionPageCustomizationProps;
 }
 
 // other
@@ -112,6 +113,22 @@ export interface ImageSelectHeaderCustomizationProps {
    */
   doneButtonLabelStyle?: TextStyle;
 }
+
+export interface ImageSelectNoPermissionPageCustomizationProps {
+  /**
+   * Text indicating that there are no permissions for the application to display photos from the user's device.
+   * @type string
+   * @default "No permission".
+   */
+  noPermissionTitle?: string;
+  /**
+   * Button label to open system settings to change permissions
+   * @type string
+   * @default "Get permission".
+   */
+  getPermissionLabelText?: string;
+}
+
 export interface SelectedImage {
   uri: string;
   filename: string | null;
