@@ -9,6 +9,7 @@ import {
   SafeAreaView,
   Dimensions,
 } from 'react-native';
+// @ts-nocheck
 import ImageSelect, {useImageSelect} from 'react-native-image-select';
 
 export default function App() {
@@ -51,6 +52,7 @@ export default function App() {
             onCancel={onCancel}
             onDone={onDone}
             callback={callback}
+            assetType="All"
           />
         </View>
       </ScrollView>

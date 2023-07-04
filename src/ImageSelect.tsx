@@ -16,6 +16,7 @@ const ImageSelectComponent = forwardRef<ImageSelect, ImageSelectProps>(
       header,
       noPermissionPage,
       callback,
+      assetType,
     },
     ref
   ) => {
@@ -29,6 +30,7 @@ const ImageSelectComponent = forwardRef<ImageSelect, ImageSelectProps>(
         callback={callback}
         header={header}
         noPermissionPage={noPermissionPage}
+        assetType={assetType}
       >
         <ImageSelectContainer>
           <ImageSelectContent />

@@ -51,6 +51,7 @@ const ImageSelectContext = forwardRef<
       callback,
       header,
       noPermissionPage,
+      assetType,
     },
     ref
   ) => {
@@ -67,7 +68,7 @@ const ImageSelectContext = forwardRef<
       handleClearSelectedImages,
       selectedImages,
       getImagesById,
-    } = useImageSelectHandlers(isVisible, startIndex ?? 0);
+    } = useImageSelectHandlers(isVisible, startIndex ?? 0, assetType);
 
     useEffect(() => {
       callback(getImagesById(selectedImages));

@@ -6,7 +6,7 @@ import { hasAndroidGalleryPermission } from '../helpers/hasAndroidGalleryPermiss
 import { isAboveIOS14 } from '../helpers/isAboveIOS14';
 import { useCameraRollState } from './useCameraRollState/useCameraRollState';
 import { useSelectedImage } from './useSelectedImage/useSelectedImage';
-import { SelectedImages } from '../types';
+import { AssetType, SelectedImages } from '../types';
 import { NativeEventSubscription } from 'react-native';
 import { AppState } from 'react-native';
 import { EmitterSubscription } from 'react-native';
@@ -30,7 +30,8 @@ const IS_ABOVE_IOS14 = isAboveIOS14();
 
 export const useImageSelectHandlers = (
   isVisible: boolean,
-  startIndex: number
+  startIndex: number,
+  assetType?: AssetType
 ): useImageSelectHandlersReturned => {
   const [isInitializing, setIsInitializing] = useState(true);
   const [hasCameraRollGranted, setCameraRollGranted] = useState(false);
@@ -42,7 +43,7 @@ export const useImageSelectHandlers = (
     onEndReached,
     getImagesById,
     onIOSLibrarySelectionChange,
-  } = useCameraRollState(isVisible);
+  } = useCameraRollState(assetType);
   const {
     handleToggleSelectedImage,
     handleRemoveSelectedImage,

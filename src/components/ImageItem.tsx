@@ -5,6 +5,7 @@ import { Image, View, TouchableOpacity } from 'react-native';
 import { useImageSelectImageItemContext } from '../context/ImageSelectContext';
 import { SelectedImage } from '../types';
 import { Text } from './atomic/Text/Text';
+import { transformNumberToTime } from '../utils/transformNumberToTime';
 
 interface ImageItemProps {
   image: SelectedImage;
@@ -43,6 +44,13 @@ const ImageItem = ({ image }: ImageItemProps) => {
           resizeMode="cover"
           onLoad={() => setIsLoading(false)}
         />
+        {image.playableDuration ? (
+          <View style={styles.playbackDurationWrapper}>
+            <Text style={styles.playbackDuration}>
+              {transformNumberToTime(image.playableDuration)}
+            </Text>
+          </View>
+        ) : null}
       </View>
       {isLoading ? (
         <View style={styles.loader}>
@@ -83,6 +91,17 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 12,
   },
+  playbackDurationWrapper: {
+    position: 'absolute',
+    bottom: 8,
+    right: 8,
+  },
+  playbackDuration: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#fff',
+  },
+
   image: {
     height: 140,
     width: '100%',

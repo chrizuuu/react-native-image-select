@@ -5,6 +5,10 @@ import {
   PhotoIdentifiersPage,
 } from '@react-native-camera-roll/camera-roll';
 
+declare module 'react-native-image-select' {}
+
+export type AssetType = 'All' | 'Videos' | 'Photos';
+
 // methods
 export interface ImageSelectMethods {
   /**
@@ -71,6 +75,13 @@ export interface ImageSelectProps {
    */
   header?: ImageSelectHeaderCustomizationProps;
   noPermissionPage?: ImageSelectNoPermissionPageCustomizationProps;
+  /**
+   * Specifies filter on asset typ
+   *
+   * @type  'All' | 'Videos' | 'Photos';
+   * @default "Photos"
+   */
+  assetType?: AssetType;
 }
 
 // other

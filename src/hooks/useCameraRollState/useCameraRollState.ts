@@ -11,7 +11,7 @@ import {
   CameraRoll,
   PhotoIdentifier,
 } from '@react-native-camera-roll/camera-roll';
-import { SelectedImages } from '../../types';
+import { AssetType, SelectedImages } from '../../types';
 import { normalizeImagePicker } from './CameraRollState.schema';
 
 const convertCameraRollPicturesToSelectedImageType = (
@@ -67,7 +67,7 @@ export function cameraRollReducer(
   }
 }
 
-export function useCameraRollState(isVisible: boolean) {
+export function useCameraRollState(assetType?: AssetType) {
   const [cameraRollState, dispatch] = useImmerReducer<
     CameraRollPhotosState,
     CameraRollPhotosActions
@@ -78,8 +78,15 @@ export function useCameraRollState(isVisible: boolean) {
       const response = await CameraRoll.getPhotos({
         first: 30,
         after: withNextCursor ? cameraRollState.nextCursor : undefined,
-        assetType: 'Photos',
-        include: ['filename', 'imageSize', 'orientation'],
+        assetType: assetType ?? 'Photos',
+        include: [
+          'filename',
+          'imageSize',
+          'orientation',
+          'playableDuration',
+          'fileSize',
+          'fileExtension',
+        ],
       });
 
       const convertedData = convertCameraRollPicturesToSelectedImageType(
@@ -94,7 +101,7 @@ export function useCameraRollState(isVisible: boolean) {
         result: normalizedData.result,
       };
     },
-    [cameraRollState.nextCursor]
+    [assetType, cameraRollState.nextCursor]
   );
 
   const loadNextPagePictures = useCallback(async () => {
@@ -137,17 +144,12 @@ export function useCameraRollState(isVisible: boolean) {
   }, [cameraRollHandler, dispatch]);
 
   const onEndReached = useCallback(async () => {
-    if (
-      cameraRollState.hasNextPage &&
-      cameraRollState.nextCursor &&
-      isVisible
-    ) {
+    if (cameraRollState.hasNextPage && cameraRollState.nextCursor) {
       await loadNextPagePictures();
     }
   }, [
     cameraRollState.hasNextPage,
     cameraRollState.nextCursor,
-    isVisible,
     loadNextPagePictures,
   ]);
 
