@@ -4,14 +4,14 @@ export function transformNumberToTime(value: number) {
   const s = Math.floor(value % 60);
 
   if (h < 1) {
-    return m.toString().padStart(2, '0') + ':' + s.toString().padStart(2, '0');
+    return m.toString().padStart(2, "0") + ":" + s.toString().padStart(2, "0");
   }
 
   return (
-    h.toString().padStart(2, '0') +
-    ':' +
-    m.toString().padStart(2, '0') +
-    ':' +
-    s.toString().padStart(2, '0')
+    h.toString().padStart(2, "0") +
+    ":" +
+    m.toString().padStart(2, "0") +
+    ":" +
+    s.toString().padStart(2, "0")
   );
 }

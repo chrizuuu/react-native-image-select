@@ -1,4 +1,4 @@
-import { SelectedImage } from '../../types';
+import { SelectedImage } from "../../types";
 
 export interface CameraRollPhotosState {
   ids: string[];
@@ -8,10 +8,10 @@ export interface CameraRollPhotosState {
 }
 
 export enum CameraRollPhotosType {
-  FULFILED = 'FULFILED',
-  ON_LIST_LOADED = 'ON_LIST_LOADED',
-  UPDATE_ITEM_SELECTED_POSITION = 'UPDATE_ITEM_SELECTED_POSITION',
-  FULFILED_IOS_LIBRARY_SELECTION_CHANGED = 'FULFILED_IOS_LIBRARY_SELECTION_CHANGED',
+  FULFILED = "FULFILED",
+  ON_LIST_LOADED = "ON_LIST_LOADED",
+  UPDATE_ITEM_SELECTED_POSITION = "UPDATE_ITEM_SELECTED_POSITION",
+  FULFILED_IOS_LIBRARY_SELECTION_CHANGED = "FULFILED_IOS_LIBRARY_SELECTION_CHANGED",
 }
 
 export type CameraRollPhotosActions =

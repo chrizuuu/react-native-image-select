@@ -1,18 +1,18 @@
-import { useCallback, useMemo } from 'react';
-import { Draft } from 'immer';
-import { useImmerReducer } from 'use-immer';
+import { useCallback, useMemo } from "react";
+import { Draft } from "immer";
+import { useImmerReducer } from "use-immer";
 import {
   CameraRollPhotosState,
   CameraRollPhotosActions,
   CameraRollPhotosType,
   initialCameraRollState,
-} from './useCameraRollState.type';
+} from "./useCameraRollState.type";
 import {
   CameraRoll,
   PhotoIdentifier,
-} from '@react-native-camera-roll/camera-roll';
-import { AssetType, SelectedImages } from '../../types';
-import { normalizeImagePicker } from './CameraRollState.schema';
+} from "@react-native-camera-roll/camera-roll";
+import { AssetType, SelectedImages } from "../../types";
+import { normalizeImagePicker } from "./CameraRollState.schema";
 
 const convertCameraRollPicturesToSelectedImageType = (
   edges: PhotoIdentifier[]
@@ -78,14 +78,14 @@ export function useCameraRollState(assetType?: AssetType) {
       const response = await CameraRoll.getPhotos({
         first: 30,
         after: withNextCursor ? cameraRollState.nextCursor : undefined,
-        assetType: assetType ?? 'Photos',
+        assetType: assetType ?? "Photos",
         include: [
-          'filename',
-          'imageSize',
-          'orientation',
-          'playableDuration',
-          'fileSize',
-          'fileExtension',
+          "filename",
+          "imageSize",
+          "orientation",
+          "playableDuration",
+          "fileSize",
+          "fileExtension",
         ],
       });
 

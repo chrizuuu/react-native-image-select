@@ -1,11 +1,11 @@
-import { useImmerReducer } from 'use-immer';
+import { useImmerReducer } from "use-immer";
 import {
   SelectedImageActions,
   SelectedImageState,
   SelectedImageType,
-} from './useSelectedImage.type';
-import { Draft } from 'immer';
-import { useCallback, useEffect } from 'react';
+} from "./useSelectedImage.type";
+import { Draft } from "immer";
+import { useCallback, useEffect } from "react";
 
 export function selectedImageReducer(
   state: Draft<SelectedImageState>,

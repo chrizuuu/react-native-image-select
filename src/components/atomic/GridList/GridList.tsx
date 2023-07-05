@@ -1,7 +1,7 @@
-import React, { useCallback } from 'react';
-import { View, FlatList } from 'react-native';
-import useGridList from './useGridList';
-import { GridListProps } from './types';
+import React, { useCallback } from "react";
+import { View, FlatList } from "react-native";
+import useGridList from "./useGridList";
+import { GridListProps } from "./types";
 
 const DEFAULT_NUM_COLUMNS = 3;
 

@@ -1,6 +1,6 @@
-import { Ref, useCallback, useEffect, useRef, useState } from 'react';
-import { SelectedImages } from '../types';
-import ImageSelect from '../ImageSelect';
+import { Ref, useCallback, useEffect, useRef, useState } from "react";
+import { SelectedImages } from "../types";
+import ImageSelect from "../ImageSelect";
 
 export interface useImageSelectReturned {
   imageSelectRef: Ref<ImageSelect>;

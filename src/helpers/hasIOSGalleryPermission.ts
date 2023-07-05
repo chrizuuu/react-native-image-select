@@ -1,4 +1,4 @@
-import { check, PERMISSIONS, RESULTS, request } from 'react-native-permissions';
+import { check, PERMISSIONS, RESULTS, request } from "react-native-permissions";
 
 export const hasIOSGalleryPermission = async () => {
   const status = await check(PERMISSIONS.IOS.PHOTO_LIBRARY);

@@ -1,4 +1,4 @@
-import { FlatListProps } from 'react-native';
+import { FlatListProps } from "react-native";
 
 export interface GridListBaseProps {
   /**

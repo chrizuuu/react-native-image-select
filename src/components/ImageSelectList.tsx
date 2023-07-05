@@ -1,7 +1,7 @@
-import React from 'react';
-import ImageItem from './ImageItem';
-import GridList from './atomic/GridList/GridList';
-import { useImageSelectImagesListContext } from '../context/ImageSelectContext';
+import React from "react";
+import ImageItem from "./ImageItem";
+import GridList from "./atomic/GridList/GridList";
+import { useImageSelectImagesListContext } from "../context/ImageSelectContext";
 
 export function ImageSelectList() {
   const { photos, onEndReached } = useImageSelectImagesListContext();

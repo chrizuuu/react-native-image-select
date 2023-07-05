@@ -1,6 +1,6 @@
-import React from 'react';
-import { ImageSelectProps } from '../types';
-import { useImageSelectHandlersReturned } from '../hooks/useImageSelectHandlers';
+import React from "react";
+import { ImageSelectProps } from "../types";
+import { useImageSelectHandlersReturned } from "../hooks/useImageSelectHandlers";
 
 export interface ImageSelectContextProps extends ImageSelectProps {
   children: React.ReactNode;
@@ -9,22 +9,22 @@ export interface ImageSelectContextProps extends ImageSelectProps {
 // Context state
 export type ImageSelectContainerContextType = Pick<
   ImageSelectContextProps,
-  'isVisible'
+  "isVisible"
 > & {
   onRequestClose: () => void;
 };
 
 export type ImageSelectHeaderContextType = Pick<
   ImageSelectContextProps,
-  'header'
+  "header"
 > & {
   onDone: () => void;
   onCancel: () => void;
 };
 
 export interface ImageSelectImagesListContextType {
-  photos: useImageSelectHandlersReturned['photos'];
-  onEndReached: useImageSelectHandlersReturned['onEndReached'];
+  photos: useImageSelectHandlersReturned["photos"];
+  onEndReached: useImageSelectHandlersReturned["onEndReached"];
 }
 
 export interface ImageSelectImageItemContextType {
@@ -33,8 +33,8 @@ export interface ImageSelectImageItemContextType {
 
 export type ImageSelectContentStateContextType = Pick<
   useImageSelectHandlersReturned,
-  'hasCameraRollGranted' | 'isInitializing'
+  "hasCameraRollGranted" | "isInitializing"
 >;
 
 export type ImageSelectNoPermissionPageContextType =
-  ImageSelectProps['noPermissionPage'];
+  ImageSelectProps["noPermissionPage"];

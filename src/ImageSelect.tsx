@@ -1,8 +1,8 @@
-import React, { forwardRef, memo } from 'react';
-import { ImageSelectContainer } from './components/ImageSelectContainer';
-import { ImageSelectContent } from './components/ImageSelectContent';
-import { ImageSelectMethods, ImageSelectProps } from './types';
-import ImageSelectContext from './context/ImageSelectContext';
+import React, { forwardRef, memo } from "react";
+import { ImageSelectContainer } from "./components/ImageSelectContainer";
+import { ImageSelectContent } from "./components/ImageSelectContent";
+import { ImageSelectMethods, ImageSelectProps } from "./types";
+import ImageSelectContext from "./context/ImageSelectContext";
 
 type ImageSelect = ImageSelectMethods;
 
@@ -41,6 +41,6 @@ const ImageSelectComponent = forwardRef<ImageSelect, ImageSelectProps>(
 );
 
 const ImageSelect = memo(ImageSelectComponent);
-ImageSelect.displayName = 'ImageSelect';
+ImageSelect.displayName = "ImageSelect";
 
 export default ImageSelect;

@@ -5,7 +5,7 @@ import React, {
   useImperativeHandle,
   useMemo,
   useEffect,
-} from 'react';
+} from "react";
 import {
   ImageSelectContextProps,
   ImageSelectImagesListContextType,
@@ -14,9 +14,9 @@ import {
   ImageSelectContainerContextType,
   ImageSelectHeaderContextType,
   ImageSelectNoPermissionPageContextType,
-} from './ImageSelectContext.type';
-import { useImageSelectHandlers } from '../hooks/useImageSelectHandlers';
-import { ImageSelectMethods } from '../types';
+} from "./ImageSelectContext.type";
+import { useImageSelectHandlers } from "../hooks/useImageSelectHandlers";
+import { ImageSelectMethods } from "../types";
 
 const ImageSelectContainerContext = createContext<
   ImageSelectContainerContextType | undefined
@@ -166,7 +166,7 @@ export function useImageSelectContainerContext() {
   const context = useContext(ImageSelectContainerContext);
   if (context === undefined) {
     throw new Error(
-      'useImageSelectContainerContext must be used within a ImageSelectContainerContext'
+      "useImageSelectContainerContext must be used within a ImageSelectContainerContext"
     );
   }
   return context;
@@ -176,7 +176,7 @@ export function useImageSelectHeaderContext() {
   const context = useContext(ImageSelectHeaderContext);
   if (context === undefined) {
     throw new Error(
-      'useImageSelectHeaderContext must be used within a ImageSelectHeaderContext'
+      "useImageSelectHeaderContext must be used within a ImageSelectHeaderContext"
     );
   }
   return context;
@@ -186,7 +186,7 @@ export function useImageSelectContentStateContext() {
   const context = useContext(ImageSelectContentStateContext);
   if (context === undefined) {
     throw new Error(
-      'useImageSelectContentStateContext must be used within a ImageSelectContentStateContext'
+      "useImageSelectContentStateContext must be used within a ImageSelectContentStateContext"
     );
   }
   return context;
@@ -196,7 +196,7 @@ export function useImageSelectImagesListContext() {
   const context = useContext(ImageSelectImagesListContext);
   if (context === undefined) {
     throw new Error(
-      'useImageSelectImagesListContext must be used within a ImageSelectImagesListContext'
+      "useImageSelectImagesListContext must be used within a ImageSelectImagesListContext"
     );
   }
   return context;
@@ -206,7 +206,7 @@ export function useImageSelectImageItemContext() {
   const context = useContext(ImageSelectImageItemContext);
   if (context === undefined) {
     throw new Error(
-      'useImageSelectImageItemContext must be used within a ImageSelectImageItemContext'
+      "useImageSelectImageItemContext must be used within a ImageSelectImageItemContext"
     );
   }
   return context;
@@ -216,7 +216,7 @@ export function useImageSelectNoPermissionPageContext() {
   const context = useContext(ImageSelectNoPermissionPageContext);
   if (context === undefined) {
     throw new Error(
-      'useImageSelectNoPermissionPageContext must be used within a ImageSelectNoPermissionPageContext'
+      "useImageSelectNoPermissionPageContext must be used within a ImageSelectNoPermissionPageContext"
     );
   }
   return context;

@@ -1,15 +1,15 @@
-import { useCallback, useEffect, useState } from 'react';
-import { Platform } from 'react-native';
-import { cameraRollEventEmitter } from '@react-native-camera-roll/camera-roll';
-import { hasIOSGalleryPermission } from '../helpers/hasIOSGalleryPermission';
-import { hasAndroidGalleryPermission } from '../helpers/hasAndroidGalleryPermission';
-import { isAboveIOS14 } from '../helpers/isAboveIOS14';
-import { useCameraRollState } from './useCameraRollState/useCameraRollState';
-import { useSelectedImage } from './useSelectedImage/useSelectedImage';
-import { AssetType, SelectedImages } from '../types';
-import { NativeEventSubscription } from 'react-native';
-import { AppState } from 'react-native';
-import { EmitterSubscription } from 'react-native';
+import { useCallback, useEffect, useState } from "react";
+import { Platform } from "react-native";
+import { cameraRollEventEmitter } from "@react-native-camera-roll/camera-roll";
+import { hasIOSGalleryPermission } from "../helpers/hasIOSGalleryPermission";
+import { hasAndroidGalleryPermission } from "../helpers/hasAndroidGalleryPermission";
+import { isAboveIOS14 } from "../helpers/isAboveIOS14";
+import { useCameraRollState } from "./useCameraRollState/useCameraRollState";
+import { useSelectedImage } from "./useSelectedImage/useSelectedImage";
+import { AssetType, SelectedImages } from "../types";
+import { NativeEventSubscription } from "react-native";
+import { AppState } from "react-native";
+import { EmitterSubscription } from "react-native";
 
 export interface useImageSelectHandlersReturned {
   photos: SelectedImages;
@@ -55,7 +55,7 @@ export const useImageSelectHandlers = (
   } = useSelectedImage({ updateItemPositionById, startIndex: startIndex });
 
   const handleCameraRollPermission = useCallback(async () => {
-    if (Platform.OS === 'ios') {
+    if (Platform.OS === "ios") {
       const status = await hasIOSGalleryPermission();
       return setCameraRollGranted(status);
     }
@@ -86,7 +86,7 @@ export const useImageSelectHandlers = (
     let subscription: EmitterSubscription;
     if (IS_ABOVE_IOS14) {
       subscription = cameraRollEventEmitter.addListener(
-        'onLibrarySelectionChange',
+        "onLibrarySelectionChange",
         async () => {
           await onIOSLibrarySelectionChange();
         }
@@ -111,17 +111,17 @@ export const useImageSelectHandlers = (
 
   useEffect(() => {
     let subscription: NativeEventSubscription;
-    if (Platform.OS === 'android') {
-      subscription = AppState.addEventListener('focus', async () => {
+    if (Platform.OS === "android") {
+      subscription = AppState.addEventListener("focus", async () => {
         if (isVisible) {
           await handleCameraRollPermission();
         }
       });
     } else {
       subscription = AppState.addEventListener(
-        'change',
+        "change",
         async (nextAppState) => {
-          if (nextAppState === 'active') {
+          if (nextAppState === "active") {
             if (isVisible) {
               await handleCameraRollPermission();
             }

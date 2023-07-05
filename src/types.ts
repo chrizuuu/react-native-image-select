@@ -1,13 +1,11 @@
-import { TextStyle } from 'react-native';
-import { ViewStyle } from 'react-native';
+import { TextStyle } from "react-native";
+import { ViewStyle } from "react-native";
 import {
   PhotoIdentifier,
   PhotoIdentifiersPage,
-} from '@react-native-camera-roll/camera-roll';
+} from "@react-native-camera-roll/camera-roll";
 
-declare module 'react-native-image-select' {}
-
-export type AssetType = 'All' | 'Videos' | 'Photos';
+export type AssetType = "All" | "Videos" | "Photos";
 
 // methods
 export interface ImageSelectMethods {
@@ -156,4 +154,4 @@ export type SelectedImages = SelectedImage[];
 
 export interface CameraRollReturnedPhoto extends PhotoIdentifier {}
 
-export type CameraRollPageInfo = PhotoIdentifiersPage['page_info'];
+export type CameraRollPageInfo = PhotoIdentifiersPage["page_info"];

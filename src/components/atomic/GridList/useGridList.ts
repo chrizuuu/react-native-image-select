@@ -1,10 +1,10 @@
-import { useMemo } from 'react';
-import { Dimensions } from 'react-native';
-import { GridListBaseProps } from './types';
+import { useMemo } from "react";
+import { Dimensions } from "react-native";
+import { GridListBaseProps } from "./types";
 
 const DEFAULT_ITEM_SPACINGS = 2;
 
-const SCREEN = Dimensions.get('screen');
+const SCREEN = Dimensions.get("screen");
 
 const useGridList = (props: GridListBaseProps) => {
   const {

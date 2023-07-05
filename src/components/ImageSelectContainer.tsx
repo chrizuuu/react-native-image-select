@@ -1,7 +1,7 @@
-import React from 'react';
-import { useImageSelectContainerContext } from '../context/ImageSelectContext';
-import { Modal, SafeAreaView, StyleSheet, View } from 'react-native';
-import { ImageSelectHeader } from './ImageSelectHeader';
+import React from "react";
+import { useImageSelectContainerContext } from "../context/ImageSelectContext";
+import { Modal, SafeAreaView, StyleSheet, View } from "react-native";
+import { ImageSelectHeader } from "./ImageSelectHeader";
 
 interface ImageSelectContainerProps {
   children: React.ReactNode;

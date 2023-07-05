@@ -1,15 +1,15 @@
-import { schema, normalize } from 'normalizr';
-import { SelectedImage } from '../../types';
+import { schema, normalize } from "normalizr";
+import { SelectedImage } from "../../types";
 
 export type ImagePickerNormalizationResult = {
   images: { [key: string]: SelectedImage };
 };
 
 export const ImagePickerSchemaEntity = new schema.Entity<SelectedImage>(
-  'images',
+  "images",
   undefined,
   {
-    idAttribute: 'uri',
+    idAttribute: "uri",
   }
 );
 
