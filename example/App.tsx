@@ -51,7 +51,7 @@ export default function App() {
             onCancel={onCancel}
             onDone={onDone}
             callback={callback}
-            assetType="All"
+            assetType="Photos"
           />
         </View>
       </ScrollView>
